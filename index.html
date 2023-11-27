@@ -51,10 +51,14 @@
       alert("Username saved!");
     }
 
+    function toggleDisplayUsernames() {
+      var savedData = document.getElementById("savedData");
+      savedData.style.display = savedData.style.display === "none" ? "block" : "none";
+    }
+
     function displayAllUsernames() {
       var allUsernames = getAllUsernames();
       document.getElementById("displayUsernames").innerText = allUsernames.join(', ') || "No usernames saved.";
-      document.getElementById("savedData").style.display = "block";
     }
 
     function getAllUsernames() {
@@ -72,7 +76,10 @@
     // Listen for Alt + U key combination
     window.addEventListener("keydown", function (event) {
       if (event.altKey && event.key === "u") {
-        displayAllUsernames();
+        toggleDisplayUsernames();
+        if (document.getElementById("savedData").style.display === "block") {
+          displayAllUsernames();
+        }
       }
     });
 
